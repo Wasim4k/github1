@@ -1,0 +1,180 @@
+/* ==========================================================================
+   RESPONSIVE — JRA Fitness Hub
+   Desktop design (≥1400px) is untouched. Everything below progressively
+   adapts. Breakpoints: 1400 / 1200 / 992 / 768 / 576 / 400.
+   ========================================================================== */
+
+/* ------------------------------ GLOBAL SAFETY NETS ------------------------ */
+html, body{ overflow-x:hidden; max-width:100%; }
+img, svg, video, iframe{ max-width:100%; height:auto; }
+.hero-bg img, .about-media img, .why-media img, .trainer-photo img,
+.g-item img, .video-main img, .video-side img, .ba-wrap img,
+.review-person img{ height:100%; } /* these have fixed-height containers, keep cover behavior */
+h1,h2,h3,h4,p,span,a{ overflow-wrap:break-word; word-break:break-word; }
+* { min-width:0; } /* prevents flex/grid children from forcing overflow */
+
+/* Comfortable minimum touch targets everywhere interactive */
+.btn, .fab, .back-top, .nav-toggle, .slider-nav button, .faq-q,
+.bmi-radio label, .footer-social a, .trainer-social a, .g-item .zoom-ic,
+.plan-feats li, input[type=range]{ min-height:44px; }
+.nav-toggle{ min-width:44px; justify-content:center; }
+.footer-social a, .trainer-social a{ min-width:44px; }
+
+/* ------------------------------ ≤1400px --------------------------------- */
+@media (max-width:1400px){
+  /* Container is already fluid (max-width:1300px, auto width) so desktop
+     layout needs no change here — this tier exists for completeness. */
+}
+
+/* ------------------------------ ≤1200px --------------------------------- */
+@media (max-width:1200px){
+  .services-grid, .plans-grid{ grid-template-columns:repeat(2,1fr); }
+  .trainers-grid{ grid-template-columns:repeat(2,1fr); }
+  .gallery-masonry{ grid-template-columns:repeat(3,1fr); }
+  .video-grid{ grid-template-columns:1fr; }
+  .video-main{ height:380px; }
+  .footer-grid{ grid-template-columns:1fr 1fr; gap:40px; }
+  .about-grid, .why-wrap{ gap:44px; }
+  .transformSwiper{ overflow:visible; }
+}
+
+/* ------------------------------ ≤992px (tablet) --------------------------- */
+@media (max-width:992px){
+  .container{ max-width:100%; padding:0 22px; }
+  section{ padding:90px 0; }
+
+  /* Hamburger nav takes over below 992px */
+  .nav-links, .nav-cta .btn-ghost{ display:none; }
+  .nav-toggle{ display:flex; }
+
+  .hero-grid{ grid-template-columns:1fr; text-align:center; gap:10px; }
+  .hero-text{ margin-left:auto; margin-right:auto; }
+  .hero-btns{ justify-content:center; }
+  .hero-title{ font-size:clamp(2.6rem,8vw,4.2rem); }
+  .hero-visual{ height:420px; margin-top:10px; }
+  .hero-athlete img{ max-height:420px; }
+  .hero-ring{ width:380px; height:380px; }
+  .hero-glow{ width:320px; height:320px; }
+  .hero-stats-inner{ grid-template-columns:repeat(2,1fr); }
+
+  .about-grid, .why-wrap{ grid-template-columns:1fr; }
+  .about-media .frame img{ height:420px; }
+  .about-badge{ right:16px; bottom:-24px; padding:16px 20px; }
+  .why-media{ height:400px; order:2; }
+
+  .services-grid, .plans-grid{ grid-template-columns:1fr 1fr; max-width:none; }
+  .plan-card.featured{ transform:none; }
+
+  .trainers-grid{ grid-template-columns:repeat(2,1fr); }
+
+  /* Before/After cards: Swiper JS breakpoints already give 2 columns here */
+  .slider-nav{ display:none; }
+
+  .gallery-masonry{ grid-template-columns:repeat(2,1fr); grid-auto-rows:200px; }
+  .g-big{ grid-column:span 2; grid-row:span 2; }
+
+  .bmi-wrap, .contact-grid{ grid-template-columns:1fr; }
+  .bmi-form,.bmi-result,.contact-info,.contact-form{ padding:40px 30px; }
+
+  .footer-grid{ grid-template-columns:1fr 1fr; }
+  .counter-strip{ grid-template-columns:repeat(2,1fr); }
+  .counter-strip .cs-item:nth-child(2){ border-right:0; }
+}
+
+/* ------------------------------ MOBILE NAV OVERLAY ------------------------ */
+@media (max-width:992px){
+  .nav-mobile{
+    position:fixed; inset:0; background:rgba(5,5,5,.98); backdrop-filter:blur(10px); z-index:1100;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:30px;
+    opacity:0; visibility:hidden; transition:opacity .4s var(--ease), visibility .4s var(--ease);
+  }
+  .nav-mobile.open{ opacity:1; visibility:visible; }
+  .nav-mobile a{ font-family:var(--f-display); font-size:2rem; letter-spacing:1px; color:#fff; padding:8px 20px; }
+  .nav-mobile a:hover{ color:var(--orange); }
+  .nav-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2){ opacity:0; }
+  .nav-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  body.nav-open{ overflow:hidden; }
+}
+
+/* ------------------------------ ≤768px (mobile) ---------------------------- */
+@media (max-width:768px){
+  .container{ padding:0 18px; }
+  section{ padding:70px 0; }
+  .section-tight{ padding:50px 0; }
+
+  .hero{ padding-top:130px; padding-bottom:60px; }
+  .hero-title{ font-size:clamp(2.4rem,10vw,3.4rem); }
+  .hero-text{ font-size:.96rem; }
+  .hero-btns{ flex-direction:column; align-items:stretch; gap:12px; }
+  .hero-btns .btn{ width:100%; justify-content:center; }
+  .hero-stats-inner{ grid-template-columns:repeat(2,1fr); }
+  .stat-num{ font-size:1.9rem; }
+
+  .section-title{ font-size:clamp(1.9rem,7.5vw,2.6rem); }
+  .section-sub{ font-size:.92rem; }
+
+  .about-media .frame img{ height:320px; }
+  .why-media{ height:300px; }
+
+  .services-grid, .plans-grid{ grid-template-columns:1fr; }
+  .trainers-grid, .gallery-masonry{ grid-template-columns:1fr; }
+  .gallery-masonry{ grid-auto-rows:220px; }
+  .g-big,.g-wide,.g-tall{ grid-column:span 1; grid-row:span 1; }
+
+  .video-main{ height:280px; }
+  .video-side{ height:180px; }
+
+  .review-card{ padding:28px; }
+
+  .bmi-form,.bmi-result,.contact-info,.contact-form{ padding:32px 22px; }
+  .contact-form .row{ display:block; }
+  .contact-form .row .col-md-6{ padding-left:0 !important; margin-bottom:0; }
+
+  .footer-grid{ grid-template-columns:1fr; gap:36px; text-align:left; }
+  .footer-bottom{ flex-direction:column; gap:10px; text-align:center; }
+  .counter-strip{ grid-template-columns:repeat(2,1fr); }
+  .counter-strip .cs-item{ padding:26px 12px; }
+
+  .cta-band{ padding:50px 26px; }
+  .cta-band .btn{ width:100%; justify-content:center; }
+  .plan-card.featured{ order:-1; }
+
+  .fab-stack{ right:16px; bottom:16px; }
+  .back-top{ left:16px; bottom:16px; width:46px; height:46px; }
+
+  .page-header{ padding:150px 0 80px; }
+
+  .btn-block, .plan-card .btn{ width:100%; justify-content:center; }
+}
+
+/* ------------------------------ ≤576px (small mobile) ---------------------- */
+@media (max-width:576px){
+  .container{ padding:0 16px; }
+  .hero-title{ font-size:clamp(2.1rem,11vw,2.9rem); }
+  .btn{ padding:14px 22px; font-size:12px; width:100%; justify-content:center; }
+  .hero-btns .btn, .nav-cta .btn{ width:auto; }
+  .nav-cta{ gap:10px; }
+  .nav-cta .btn{ padding:11px 16px; font-size:11px; }
+  .brand{ font-size:1.35rem; }
+  .stat-cell{ padding:18px 10px; }
+  .about-badge{ position:static; margin-top:16px; display:inline-block; }
+  .about-media{ text-align:center; }
+  .plan-price .amt{ font-size:2.8rem; }
+  .contact-info, .contact-form{ padding:26px 18px; }
+  .bmi-form, .bmi-result{ padding:26px 18px; }
+  .video-tag b{ font-size:1.2rem; }
+}
+
+/* ------------------------------ ≤400px (very small) ------------------------ */
+@media (max-width:400px){
+  .hero-title{ font-size:2rem; }
+  .eyebrow{ font-size:11px; letter-spacing:3px; }
+  .section-title{ font-size:1.7rem; }
+  .plate{ --size:52px; }
+  .about-point .plate, .why-item .plate{ --size:42px; }
+  .bmi-gauge{ width:160px; height:160px; }
+  .bmi-score{ font-size:2.3rem; }
+  .fab{ width:50px; height:50px; font-size:1.2rem; }
+  .footer-social a, .trainer-social a{ width:38px; height:38px; }
+}
